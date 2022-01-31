@@ -2,18 +2,18 @@ import 'package:flutter_zoom_clone/models/usermodel.dart';
 
 class UserViewModel {
   //Calling the User class from usermodel.dart
-  final User? user;
+  final UserDetails? user;
 
   UserViewModel({this.user});
 
-  // String get username {
+  // String set username {
   //   return user!.username;
   // }
   // getusername(){
   //   String? username;
   //   return username=user!.username;
   // }
-  //String username=user.username;
+  //static String username=user.username;
 
   String get profilepic {
     if (user!.profilePic == null) {
