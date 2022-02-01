@@ -6,16 +6,19 @@ import 'package:flutter_zoom_clone/views/screens/home.dart';
 
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
   
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   bool isLoggingin=false;
+  TextEditingController userNamecontroller = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   
  navigateHome(){
    Navigator.of(context).pushReplacement(
@@ -26,23 +29,26 @@ class _LoginPageState extends State<LoginPage> {
                                                       
                                                     )));
  }
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _registerformKey = GlobalKey<FormState>();
   UserDetails userVM = UserDetails();
   bool _passwordVisible = false;
   
 
   @override
   Widget build(BuildContext context) {
-    final loginNotifier=Provider.of<AuthProvider>(context);
+    final registerNotifier=Provider.of<AuthProvider>(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
-          key: _formKey,
+          key: _registerformKey,
           child: Column(
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
+
+              //Username field
               TextFormField(
+                controller: userNamecontroller,
 
                 decoration:  InputDecoration(
                   border: OutlineInputBorder(
@@ -60,7 +66,28 @@ class _LoginPageState extends State<LoginPage> {
                   }
                 },
               ),
-              const SizedBox(height: 20,),TextFormField(
+              //Password field
+              TextFormField(
+                controller: emailController,
+
+                decoration:  InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                    labelText: "Email", hintText: "Your email"),
+                    
+                onSaved: (value) {
+                  userVM.email=value!;
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Please provide your email";
+                  }
+                },
+              ),
+              const SizedBox(height: 20,),
+              TextFormField(
+                controller: passwordController,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -96,11 +123,13 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               ElevatedButton(
-                  onPressed: () {
-
-                    loginNotifier.login(navigateHome);
+                  onPressed: ()async {
+                   if(_registerformKey.currentState!.validate()){
+                     _registerformKey.currentState?.save();
+                     await registerNotifier.register(userNamecontroller.text,emailController.text,passwordController.text, navigateHome);
+                   }
                   },
-                  child: const Text("Save"))
+                  child: const Text("Register"))
             ],
           ),
         ),

@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+
 
 
 //colors
@@ -32,7 +32,7 @@ const kColorText = Color(0xffDBEDF3);
 
 
 
-TextStyle kSendButtonTextStyle = TextStyle(
+const TextStyle kSendButtonTextStyle = TextStyle(
   color: kColorText,
   fontWeight: FontWeight.bold,
   fontSize: 20,

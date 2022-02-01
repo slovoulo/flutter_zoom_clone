@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_clone/views/screens/login.dart';
+import 'package:flutter_zoom_clone/views/screens/register.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -11,12 +13,21 @@ class LandingPage extends StatelessWidget {
         ElevatedButton(
          // style:ButtonStyle(),
                   onPressed: () {
-                    adduser();
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LoginPage()));
                   },
                   child: const Text("Login")),
                   ElevatedButton(
                   onPressed: () {
-                    registeruser();
+                    Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const RegisterPage()));
+                   
                   },
                   child: const Text("Register"))
                 
