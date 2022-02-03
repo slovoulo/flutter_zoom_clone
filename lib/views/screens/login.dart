@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_clone/models/usermodel.dart';
 import 'package:flutter_zoom_clone/providers/auth_provider.dart';
-import 'package:flutter_zoom_clone/view_models/user_view_model.dart';
 import 'package:flutter_zoom_clone/views/screens/home.dart';
 
 import 'package:provider/provider.dart';
@@ -16,6 +15,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isLoggingin=false;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   
  navigateHome(){
    Navigator.of(context).pushReplacement(
@@ -43,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               SizedBox(height: MediaQuery.of(context).size.height * 0.35),
               TextFormField(
+                controller: emailController,
 
                 decoration:  InputDecoration(
                   border: OutlineInputBorder(
@@ -61,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 20,),TextFormField(
+                controller: passwordController,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -98,9 +101,9 @@ class _LoginPageState extends State<LoginPage> {
               ElevatedButton(
                   onPressed: () {
 
-                    loginNotifier.login(navigateHome);
+                    loginNotifier.login(emailController.text,passwordController.text,navigateHome);
                   },
-                  child: const Text("Save"))
+                  child: const Text("Login"))
             ],
           ),
         ),

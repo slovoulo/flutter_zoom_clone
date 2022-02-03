@@ -6,23 +6,41 @@ import 'package:flutter_zoom_clone/models/constants.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider extends ChangeNotifier {
   final UserDetails user;
   bool isLoggingin = false;
+
   FirebaseAuth auth = FirebaseAuth.instance;
   // ignore: prefer_typing_uninitialized_variables
   var error;
   var firebaseauth = FirebaseAuth.instance;
   final DataBaseService DBs = DataBaseService();
+  String username="";
+
 
   AuthProvider({required this.user});
 
-  login(Function navigateHome) async {
+  Future retrieveUsername() async {
+    final documentsnap=await DBs.userCollectionRef.doc(user.userID).get();
+    final userdata=documentsnap.data();
+    username = (userdata as dynamic)["username"];
+    return username;
+  }
+
+  login(String email,String password,Function navigateHome) async {
+    final loginprefs = await SharedPreferences.getInstance();
     try {
       // await firebaseauth.signInWithEmailAndPassword(
-      await DBs.Firebase.signInWithEmailAndPassword(
+      await DBs.firebase.signInWithEmailAndPassword(
           email: user.email, password: user.password);
+      //Retrieve username from firebase
+      await retrieveUsername();
+
+      //Save username in state to be retrieved anytime in the app
+      loginprefs.setString("username",username);
+      print("Username is $username");
       navigateHome();
       notifyListeners();
     } on FirebaseAuthException catch (e) {
@@ -35,12 +53,16 @@ class AuthProvider extends ChangeNotifier {
 
   register(String username, String email, String password,
       Function navigateHome) async {
+    final registerprefs = await SharedPreferences.getInstance();
     try {
       // await user.firebaseauth.createUserWithEmailAndPassword(
-      await DBs.Firebase.createUserWithEmailAndPassword(
+      await DBs.firebase.createUserWithEmailAndPassword(
           email: email, password: password);
 
       await DBs.saveUserData(username, email);
+
+      //Save username in state to be retrieved anytime in the app
+      registerprefs.setString("username", username);
 
       navigateHome();
       notifyListeners();

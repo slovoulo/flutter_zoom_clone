@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 
@@ -37,6 +38,18 @@ const TextStyle kSendButtonTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
+
+//Defining textstyle class where fontsize is the only required character
+TextStyle myStyle(double size, [Color? color,FontWeight fw=FontWeight.w700]){
+  return GoogleFonts.montserrat(
+    fontSize: size,
+    color: color,
+    fontWeight: fw,
+  );
+
+
+
+}
 
 
 
