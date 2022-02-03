@@ -1,6 +1,6 @@
 # flutter_zoom_clone
 
-A new Flutter project.
+A clone of the popular cloud meeting application made in Flutter
 
 ## Getting Started
 
