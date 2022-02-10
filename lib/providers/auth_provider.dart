@@ -40,7 +40,7 @@ class AuthProvider extends ChangeNotifier {
 
       //Save username in state to be retrieved anytime in the app
       loginprefs.setString("username",username);
-      print("Username is $username");
+
       navigateHome();
       notifyListeners();
     } on FirebaseAuthException catch (e) {
