@@ -34,10 +34,20 @@ const kColorText = Color(0xffDBEDF3);
 
 
 const TextStyle kSendButtonTextStyle = TextStyle(
-  color: kColorText,
+  color: kCyanColor,
   fontWeight: FontWeight.bold,
   fontSize: 20,
 );
+
+const TextStyle kOnboardingStyle = TextStyle(
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+  fontSize: 27,
+
+);
+TextStyle buttonStyle=GoogleFonts.montserrat(color: kColorAccent,
+  fontWeight: FontWeight.w300,
+  fontSize: 18,);
 
 //Defining textstyle class where fontsize is the only required character
 TextStyle myStyle(double size, [Color? color,FontWeight fw=FontWeight.w700]){
