@@ -57,8 +57,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     labelText: "Username", hintText: "Your username"),
                     
                 onChanged: (value) {
-                  var vl=userVM.username;
-                  if(vl != null){userVM.username = value;}
+                  // var vl=userVM.username;
+                  // if(vl != null){userVM.username = value;
+                  // }
                 },
                 validator: (value) {
                   if (value!.isEmpty) {

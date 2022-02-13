@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // class ThemeProvider extends ChangeNotifier{
 //   ThemeMode themeMode= ThemeMode.dark;
@@ -20,10 +21,16 @@ import 'package:flutter/material.dart';
 // }
 
 class DarkMode with ChangeNotifier {
+   getThemeBoolSP() async {
+    SharedPreferences mSharedPrefs = await SharedPreferences.getInstance();
+    return mSharedPrefs.getBool('darkMode');
+  }
   bool darkMode = true; ///by default it is true
   ///made a method which will execute while switching
-  changemode() {
+  changemode()async {
     darkMode = !darkMode;
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool('darkMode', darkMode);
     notifyListeners(); ///notify the value or update the widget value
   }
 }

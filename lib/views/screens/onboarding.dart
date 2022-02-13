@@ -62,7 +62,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
+                              builder: (context) => const RegisterPage()));
                     },
                     child: Text(
                       "Sign Up",
@@ -74,7 +74,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const RegisterPage()));
+                              builder: (context) => const LoginPage()));
                     },
                     child: Text(
                       "Login",
