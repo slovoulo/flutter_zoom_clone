@@ -81,3 +81,17 @@ Widget kbuttonContainer(Icon icon, Color color, double height, double width,
     ),
   );
 }
+
+Widget profileContainer(double height, double width,){
+  return Container( decoration: BoxDecoration(
+      image: DecorationImage(
+        image: new AssetImage(
+            'assets/images/talion.jpg'),
+        fit: BoxFit.fill,
+      ),
+
+      //border: Border.all(color: Colors.black),
+      borderRadius: BorderRadius.circular(15)
+  ),
+  width: width,height: height,);
+}

@@ -3,7 +3,7 @@ import 'package:flutter_zoom_clone/models/constants.dart';
 import 'package:flutter_zoom_clone/models/usermodel.dart';
 import 'package:flutter_zoom_clone/providers/auth_provider.dart';
 import 'package:flutter_zoom_clone/views/screens/landing.dart';
-import 'package:flutter_zoom_clone/views/screens/profile.dart';
+import 'package:flutter_zoom_clone/views/screens/settings.dart';
 import 'package:flutter_zoom_clone/views/screens/videocall.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   int page = 0;
-  List pageoptions=[VideoCall(),ProfilePage(),];
+  List pageoptions=[VideoCall(),Settings(),];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
